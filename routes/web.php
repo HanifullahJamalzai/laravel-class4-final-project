@@ -13,4 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\admin\DashboardController::class, 'index'])->name('admin');
+Route::get('/admin', [App\Http\Controllers\admin\DashboardController::class, 'index'])->name('admin');
+Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
+
+// path یا مسیر ها

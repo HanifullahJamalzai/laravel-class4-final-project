@@ -1,0 +1,60 @@
+----- Blog
+
+=> Sliders
+    -> photo
+    -> title
+    -> description
+
+=> Categories
+    -> name
+
+=> Tags
+    ->name
+
+=> Posts
+    -> category_id
+    -> title
+    -> description
+    -> photo
+
+=> Comment
+    -> user_id
+    -> post_id
+    -> description
+
+=> Reply
+    -> user_id
+    -> comment_id
+    -> description
+
+=> About
+    -> company_history
+    -> history_photo
+    -> mission_vision
+    -> mv_photo
+
+=> Teams
+    -> photo
+    -> name
+    -> position
+    -> bio
+
+=> Messages
+    -> name
+    -> email
+    -> subject
+    -> description
+
+=> Setting
+    -> footer_description
+    -> address
+    -> phone_number
+    -> email
+    -> fb_link
+    -> twitter_link
+    -> instagram_link
+
+
+
+
+

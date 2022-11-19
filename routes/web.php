@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', [App\Http\Controllers\admin\DashboardController::class, 'index'])->name('admin');
-Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+    
+});
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-// path یا مسیر ها
+// Route::get('/admin', [DashboardController::class, 'index'])->name('admin')->middleware('auth');
+
+Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');

@@ -16,6 +16,7 @@ use App\Http\Controllers\auth\RegisterController;
 |
 */
 
+// Admin Related Routes
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 });
@@ -25,4 +26,11 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 
 // Route::get('/admin', [DashboardController::class, 'index'])->name('admin')->middleware('auth');
 
+
+
+// Landing Page Related Routes
 Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
+Route::get('/about', [App\Http\Controllers\landing\LandingController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\landing\LandingController::class, 'contact'])->name('contact');
+Route::get('/post', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
+Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');

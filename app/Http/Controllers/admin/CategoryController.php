@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return 'I am inside category controller';
+        $categories = \App\Models\Category::all();
+        // dd($categories);
+
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +38,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        \App\Models\Category::create(
+            $request->validate([
+                'name' => 'required|min:3|max:50',
+            ])
+        );
+        session()->flash('success', 'You have successfully added New Category');
+        return redirect('category');
     }
 
     /**

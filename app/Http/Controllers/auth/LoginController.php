@@ -21,14 +21,13 @@ class LoginController extends Controller
       
         if(!auth()->attempt(['email' => $request->email, 'password' => $request->password]))
         {
-            return 'Credentials are not Correct';
+            session()->flash('error', 'Credentials do not match!');
+            return back();
         }
         else{
             auth()->attempt(['email' => $request->email, 'password' => $request->password], $request->remember);
             return redirect('admin');
         }
 
-
-        dd($request->all());
     }
 }

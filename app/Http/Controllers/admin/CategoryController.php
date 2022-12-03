@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.category.create')->with('page', 'store');
     }
 
     /**
@@ -66,9 +66,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        dd($id);
+        // dd($category);
+        return view('admin.category.create', compact('category'))->with('page', 'Edit');
     }
 
     /**
@@ -78,9 +79,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name
+        ]);
+        session()->flash('success', 'You have successfully Updated Category');
+        return redirect('category');
     }
 
     /**

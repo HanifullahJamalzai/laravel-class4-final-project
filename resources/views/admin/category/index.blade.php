@@ -43,7 +43,15 @@
                     <tr>
                       <th scope="row">{{ ++$key }}</th>
                       <td>{{ $item->name }}</td>
-                      <td>EDIT | DELETE</td>
+                      <td class="d-flex">
+                        <a href="{{ route('category.edit', ['category' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a>
+                        &nbsp;
+                        <form action="{{ route('category.destroy', ['category' => $item->id]) }}" method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                      </td>
                     </tr>
                     @endforeach
                 </tbody>

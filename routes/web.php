@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
@@ -26,6 +27,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('category/{category}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     Route::get('category/trash', [CategoryController::class, 'trash'])->name('category.trash');
     Route::resource('category', CategoryController::class);
+    
+    Route::post('tag/search', [TagController::class, 'search'])->name('tag.search');
+    Route::get('tag/{tag}/forcedelete', [TagController::class, 'forceDelete'])->name('tag.forcedelete');
+    Route::get('tag/{tag}/restore', [TagController::class, 'restore'])->name('tag.restore');
+    Route::get('tag/trash', [TagController::class, 'trash'])->name('tag.trash');
+    Route::resource('tag', TagController::class);
 
 });
 

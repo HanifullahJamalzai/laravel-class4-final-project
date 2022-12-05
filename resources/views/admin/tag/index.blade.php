@@ -51,7 +51,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $key => $item)
+                    @forelse ($tags as $key => $item)
                     <tr>
                       <th scope="row">{{ ++$key }}</th>
                       <td>{{ $item->name }}</td>

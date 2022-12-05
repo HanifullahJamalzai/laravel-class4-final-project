@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Error;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -39,18 +42,26 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        
-        \App\Models\Category::create(
-            $request->validate(
-                [
-                    'name' => 'required|min:3|max:50',
-                ],[
-                    'name.required' => 'This section is so much important',
-                    'name.min' => 'your text is not sufficient',
-                    'name.max' => 'name field should not be that much large', 
-                ]
-            )
-        );
+        try{
+            \App\Models\Category::create(
+                $request->validate(
+                    [
+                        'name' => 'required|min:3|max:50',
+                    ],[
+                        'name.required' => 'This section is so much important',
+                        'name.min' => 'your text is not sufficient',
+                        'name.max' => 'name field should not be that much large', 
+                    ]
+                )
+            );
+        }catch(\Exception $e){
+            dd('General exception: '. $e->getMessage());
+        }catch(ModelNotFoundException $e){
+            dd('Model exception: '. $e->getMessage());
+        }catch(Error $e){
+            dd('Error Happened:'. $e->getMessage());
+        }
+
         session()->flash('success', 'You have successfully added New Category');
         return redirect('category');
     }

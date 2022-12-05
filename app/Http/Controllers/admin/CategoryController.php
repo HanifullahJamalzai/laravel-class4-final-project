@@ -120,7 +120,28 @@ class CategoryController extends Controller
         $category->delete();
         session()->flash('success', 'You have successfully Deleted Category');
         return redirect('category');
+        
+    }
 
+    public function trash(){
+        $categories = Category::onlyTrashed()->get();
+        return view('admin.category.trash', compact('categories'));
+    }
 
+    public function restore($category)
+    {
+        Category::withTrashed()->where('id', $category)->restore();
+        
+        session()->flash('success', 'You have successfully Restored Category');
+        return redirect('category');
+    }
+    
+    public function forceDelete($category)
+    {
+        Category::withTrashed()->where('id', $category)->forceDelete();
+        
+        session()->flash('success', 'You have successfully forceDeleted Category');
+        return redirect('category');
+        // Force Delete
     }
 }

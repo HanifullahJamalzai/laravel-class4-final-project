@@ -30,7 +30,7 @@
 
                   <div class="icon">
                     <a href="{{ route('category.create') }}">
-                      <i class="bi bi-plus-lg" style="cursor: pointer; font-size: 2em;"></i>
+                        <i class="bi bi-plus-lg" style="cursor: pointer; font-size: 2em;"></i>
                     </a>
                   </div>
               </div>
@@ -51,13 +51,9 @@
                       <th scope="row">{{ ++$key }}</th>
                       <td>{{ $item->name }}</td>
                       <td class="d-flex">
-                        <a href="{{ route('category.edit', ['category' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a>
+                        <a href="{{ route('category.restore', ['category' => $item->id]) }}" class="btn btn-success btn-sm">Restore</a>
                         &nbsp;
-                        <form action="{{ route('category.destroy', ['category' => $item->id]) }}" method="post">
-                          @csrf
-                          @method('delete')
-                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        <a href="{{ route('category.forcedelete', ['category' => $item->id]) }}" class="btn btn-danger btn-sm">Force Delete</a>
                       </td>
                     </tr>
                     @endforeach

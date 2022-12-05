@@ -41,9 +41,15 @@ class CategoryController extends Controller
     {
         
         \App\Models\Category::create(
-            $request->validate([
-                'name' => 'required|min:3|max:50',
-            ])
+            $request->validate(
+                [
+                    'name' => 'required|min:3|max:50',
+                ],[
+                    'name.required' => 'This section is so much important',
+                    'name.min' => 'your text is not sufficient',
+                    'name.max' => 'name field should not be that much large', 
+                ]
+            )
         );
         session()->flash('success', 'You have successfully added New Category');
         return redirect('category');

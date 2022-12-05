@@ -144,4 +144,11 @@ class CategoryController extends Controller
         return redirect('category');
         // Force Delete
     }
+
+
+    public function search(Request $request)
+    {
+        $categories = Category::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        return view('admin.category.index', compact('categories'));
+    }
 }

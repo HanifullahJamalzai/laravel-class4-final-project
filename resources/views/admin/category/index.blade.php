@@ -20,7 +20,12 @@
         <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
-                  <h5 class="card-title">Table with hoverable rows</h5>
+                  <h5 class="card-title">
+                    <form action="{{ route('category.search') }}" method="post">
+                      @csrf
+                      <input type="text" name="search" id="" placeholder="Search here..."> <button type="submit">Search</button>
+                    </form>
+                  </h5>
                   
                   <div class="icon">
                     <a href="{{ route('category.trash') }}">
@@ -46,7 +51,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $key => $item)
+                    @forelse ($categories as $key => $item)
                     <tr>
                       <th scope="row">{{ ++$key }}</th>
                       <td>{{ $item->name }}</td>
@@ -60,7 +65,9 @@
                         </form>
                       </td>
                     </tr>
-                    @endforeach
+                    @empty
+                      <h1 class="text-danger">No Items Found!</h1>
+                    @endforelse
                 </tbody>
               </table>
               <!-- End Table with hoverable rows -->

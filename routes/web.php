@@ -21,6 +21,7 @@ use App\Http\Controllers\auth\RegisterController;
 // Admin Related Routes
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+    Route::post('category/search', [CategoryController::class, 'search'])->name('category.search');
     Route::get('category/{category}/forcedelete', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
     Route::get('category/{category}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     Route::get('category/trash', [CategoryController::class, 'trash'])->name('category.trash');

@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_id', 'tag_id');
+    }
 }

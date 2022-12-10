@@ -56,13 +56,18 @@
                       <th scope="row">{{ ++$key }}</th>
                       <td>{{ $item->name }}</td>
                       <td class="d-flex">
-                        <a href="{{ route('category.edit', ['category' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a>
+
+                        {{-- <a href="{{ route('category.edit', ['category' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a> --}}
+                        {{-- <x-edit-button-component route="category.edit" routeName="category" :routeKey="$item->id" /> --}}
                         &nbsp;
+
+                        {{-- <x-delete-btn-component route="category.destroy" routeName="category" :routeKey="$item['id']" /> --}}
+{{-- 
                         <form action="{{ route('category.destroy', ['category' => $item->id]) }}" method="post">
                           @csrf
                           @method('delete')
                           <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        </form> --}}
                       </td>
                     </tr>
                     @empty

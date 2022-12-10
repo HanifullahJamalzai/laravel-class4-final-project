@@ -58,11 +58,11 @@
                       <td class="d-flex">
                         <a href="{{ route('tag.edit', ['tag' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a>
                         &nbsp;
-                        <form action="{{ route('tag.destroy', ['tag' => $item->id]) }}" method="post">
-                          @csrf
-                          @method('delete')
-                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        
+                        {{-- Route --}}
+                        {{-- RouteKey --}}
+                        {{-- <x-delete-btn-component route="tag.destroy" routeName="tag" :routeKey="$item['id']" /> --}}
+
                       </td>
                     </tr>
                     @empty

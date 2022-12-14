@@ -60,7 +60,7 @@ class TagController extends Controller
         }
 
         session()->flash('success', 'You have successfully added New Tag');
-        return redirect('tag');
+        return redirect('admin/tag');
     }
 
     /**
@@ -99,7 +99,7 @@ class TagController extends Controller
             'name' => $request->name
         ]);
         session()->flash('success', 'You have successfully Updated Tag');
-        return redirect('tag');
+        return redirect('admin/tag');
     }
 
     /**
@@ -116,7 +116,7 @@ class TagController extends Controller
         // dd($Tag);
         $tag->delete();
         session()->flash('success', 'You have successfully Deleted Tag');
-        return redirect('tag');
+        return redirect('admin/tag');
         
     }
 
@@ -130,7 +130,7 @@ class TagController extends Controller
         Tag::withTrashed()->where('id', $tag)->restore();
         
         session()->flash('success', 'You have successfully Restored Tag');
-        return redirect('tag');
+        return redirect('admin/tag');
     }
     
     public function forceDelete($tag)
@@ -138,7 +138,7 @@ class TagController extends Controller
         Tag::withTrashed()->where('id', $tag)->forceDelete();
         
         session()->flash('success', 'You have successfully forceDeleted Tag');
-        return redirect('tag');
+        return redirect('admin/tag');
         // Force Delete
     }
 

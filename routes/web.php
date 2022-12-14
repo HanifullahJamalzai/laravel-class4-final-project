@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
@@ -20,8 +21,8 @@ use App\Http\Controllers\auth\RegisterController;
 */
 
 // Admin Related Routes
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::post('category/search', [CategoryController::class, 'search'])->name('category.search');
     Route::get('category/{category}/forcedelete', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
     Route::get('category/{category}/restore', [CategoryController::class, 'restore'])->name('category.restore');
@@ -33,6 +34,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('tag/{tag}/restore', [TagController::class, 'restore'])->name('tag.restore');
     Route::get('tag/trash', [TagController::class, 'trash'])->name('tag.trash');
     Route::resource('tag', TagController::class);
+
+    Route::resource('post', PostController::class);
 
 });
 

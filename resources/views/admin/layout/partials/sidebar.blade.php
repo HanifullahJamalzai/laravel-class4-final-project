@@ -25,7 +25,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('tag.index') }}">
+        <a class="nav-link collapsed" href="{{ route('post.index') }}">
           <i class="bi bi-grid"></i>
           <span>Posts</span>
         </a>

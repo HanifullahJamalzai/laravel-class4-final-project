@@ -63,7 +63,7 @@ class CategoryController extends Controller
         }
 
         session()->flash('success', 'You have successfully added New Category');
-        return redirect('category');
+        return redirect('admin/category');
     }
 
     /**
@@ -102,7 +102,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
         session()->flash('success', 'You have successfully Updated Category');
-        return redirect('category');
+        return redirect('admin/category');
     }
 
     /**
@@ -119,7 +119,7 @@ class CategoryController extends Controller
         // dd($category);
         $category->delete();
         session()->flash('success', 'You have successfully Deleted Category');
-        return redirect('category');
+        return redirect('admin/category');
         
     }
 

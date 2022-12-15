@@ -47,6 +47,8 @@ class PostController extends Controller
         $post['title'] = $request->title;
         $post['description'] = $request->description;
         $post['category_id'] = $request->category;
+
+        // dd($request->tag);
         if($request->photo)
         {
             $fileName = 'post_' . date('Ymd_his') . rand(10, 10000) . '.' . $request->photo->extension();
@@ -54,11 +56,10 @@ class PostController extends Controller
             $post['photo'] = '/storage/photos/posts/' . $fileName;
             // dd($post->photo);
         }
-        // $post->tags->attach($request->tag);
         $post->save();
+        $post->tags()->attach($request->tag);
+        
         return redirect('admin/post');
-
-
     }
 
     /**

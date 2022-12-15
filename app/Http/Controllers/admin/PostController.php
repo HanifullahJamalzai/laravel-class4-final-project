@@ -58,7 +58,7 @@ class PostController extends Controller
         }
         $post->save();
         $post->tags()->attach($request->tag);
-        
+
         return redirect('admin/post');
     }
 
@@ -103,8 +103,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        @unlink(public_path() . '/' . $post->photo);
+        $post->delete();
+        return redirect('admin/post');
     }
 }

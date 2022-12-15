@@ -64,6 +64,11 @@
                       <td class="d-flex">
                         <a href="{{ route('post.edit', ['post' => $item->id]) }}" class="btn btn-success btn-sm">Edit</a>
                         &nbsp;
+                        <form action="{{ route('post.destroy', ['post' => $item->id]) }}" method="post">
+                          @csrf
+                          @method('delete')
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
                         
                         {{-- Route --}}
                         {{-- RouteKey --}}

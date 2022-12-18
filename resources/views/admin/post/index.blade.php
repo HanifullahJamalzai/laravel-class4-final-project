@@ -81,8 +81,9 @@
                 </tbody>
               </table>
               <!-- End Table with hoverable rows -->
-
+              
             </div>
+            {{ $posts->links() }}
           </div>
 
 

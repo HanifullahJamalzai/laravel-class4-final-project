@@ -83,8 +83,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-    
-        return view('admin.post.create', compact('post'));
+        $tags = Tag::all();
+        $categories = Category::all();
+
+        $selected_tags = [];
+        foreach($post->tags as $tag)
+        {
+            array_push($selected_tags, $tag->pivot->tag_id);
+        }
+        return view('admin.post.create', compact('post', 'tags', 'categories', 'selected_tags'));
     }
 
     /**

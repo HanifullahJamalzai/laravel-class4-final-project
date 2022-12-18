@@ -41,7 +41,16 @@
                   <div class="col-sm-10">
                       <select name="category" class="form-control" id="">
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" 
+                              @if(isset($post)) 
+
+                                {{-- @if($category->id == $post->category->id)  
+                                  @selected(true) 
+                                @endif --}}
+                                
+                                {{ $category->id == $post->category->id ? 'selected': '' }}  
+                              @endif 
+                              >{{ $category->name }}</option>
                         @endforeach
                       </select>
                   </div>
@@ -72,7 +81,17 @@
                     <div class="col-sm-10">
                         <select name="tag[]" multiple class="form-control" id="">
                           @foreach ($tags as $tag)
-                              <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                              <option value="{{ $tag->id }}"
+
+                                @foreach ($selected_tags as $selected )
+                                  @if($selected == $tag->id)
+                                    @selected(true)
+                                  @endif
+                                  {{-- {{ $selected == $tag->id ? 'selected': '' }} --}}
+                                @endforeach
+
+                                >
+                                {{ $tag->name }}</option>
                           @endforeach
                         </select>
                     </div>

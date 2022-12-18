@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -101,9 +102,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, Post $post)
     {
-        //
+        // dd($request, $post);
+
+        $post['title'] = $request->title;
+        $post['description'] = $request->description;
+        $post['category_id'] = $request->category;
+
+        // dd($request->tag);
+        if($request->photo)
+        {
+            @unlink(public_path() . '/' . $post->photo);
+            $fileName = 'post_' . date('Ymd_his') . rand(10, 10000) . '.' . $request->photo->extension();
+            $request->photo->storeAs('/photos/posts', $fileName, 'public');
+            $post['photo'] = '/storage/photos/posts/' . $fileName;
+            // dd($post->photo);
+        }
+        $post->save();
+
+        // $post->tags()->sync($request->tag);
+
+        $post->tags()->detach();
+        $post->tags()->attach($request->tag);
+
+        // $post->tags()->attach($request->tag);
+
+        return redirect('admin/post');
     }
 
     /**

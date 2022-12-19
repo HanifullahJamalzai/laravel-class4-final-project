@@ -1,7 +1,7 @@
-@extends('landing.index')
+@extends('landing.layout.index')
 @section('content')
 
-<section id="contact" class="contact mb-5">
+  <section id="contact" class="contact mb-5">
     <div class="container" data-aos="fade-up">
 
       <div class="row">

@@ -1,7 +1,7 @@
-@extends('landing.index')
+@extends('landing.layout.index')
 @section('content')
-
-<section>
+ 
+  <section>
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-12 text-center mb-5">

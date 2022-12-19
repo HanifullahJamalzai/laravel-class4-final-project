@@ -3,23 +3,36 @@
 namespace App\Http\Controllers\landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Setting;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
     public function index()
     {
-        return view('landing.index');
+        $setting = Setting::first();
+        $sliders = Slider::all();
+        $categories = Category::all();
+
+        return view('landing.index', compact('setting', 'sliders', 'categories'));
     }
 
     public function contact()
     {
-        return view('landing.contact');
+        $categories = Category::all();
+        $setting = Setting::first();
+
+        return view('landing.contact', compact('categories', 'setting'));
     }
 
     public function about()
-    {
-        return view('landing.about');
+    {   
+        $categories = Category::all();
+        $setting = Setting::first();
+
+        return view('landing.contact', compact('categories', 'setting'));
     }
 
     public function post()
@@ -31,4 +44,5 @@ class LandingController extends Controller
     {
         return view('landing.posts');
     }
+
 }

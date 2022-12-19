@@ -13,9 +13,9 @@
         <li><a href="{{ route('landing') }}">Blog</a></li>
         <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="search-result.html">Search Result</a></li>
+            @foreach ($categories as $category)
+              <li><a href="search-result.html">{{ $category->name }}</a></li>
+            @endforeach
           </ul>
         </li>
 
@@ -24,8 +24,9 @@
       </ul>
     </nav><!-- .navbar -->
 
+
     <div class="position-relative">
-      <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
+      <a href="{{ $setting->fb_link }}" class="mx-2"><span class="bi-facebook"></span></a>
       <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
       <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
 

@@ -1,4 +1,4 @@
-@extends('landing.index')
+@extends('landing.layout.index')
 @section('content')
 
     <!-- ======= Search Results ======= -->

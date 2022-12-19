@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(7)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         // Post::factory(40)->create();
         // Tag::factory(25)->create();
         // Comment::factory(100)->create();
-        Reply::factory(200)->create();
+        // Reply::factory(200)->create();
         // Message::factory(25)->create();
         // Team::factory(4)->create();
     }

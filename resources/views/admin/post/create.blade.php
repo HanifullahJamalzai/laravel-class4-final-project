@@ -81,15 +81,17 @@
                     <div class="col-sm-10">
                         <select name="tag[]" multiple class="form-control" id="">
                           @foreach ($tags as $tag)
+
                               <option value="{{ $tag->id }}"
-
-                                @foreach ($selected_tags as $selected )
-                                  @if($selected == $tag->id)
-                                    @selected(true)
-                                  @endif
-                                  {{-- {{ $selected == $tag->id ? 'selected': '' }} --}}
-                                @endforeach
-
+                                
+                                @if(isset($selected_tags))
+                                  @foreach ($selected_tags as $selected )
+                                    @if($selected == $tag->id)
+                                      @selected(true)
+                                    @endif
+                                    {{-- {{ $selected == $tag->id ? 'selected': '' }} --}}
+                                  @endforeach
+                                @endif
                                 >
                                 {{ $tag->name }}</option>
                           @endforeach

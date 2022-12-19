@@ -126,8 +126,6 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->tags()->attach($request->tag);
 
-        // $post->tags()->attach($request->tag);
-
         return redirect('admin/post');
     }
 

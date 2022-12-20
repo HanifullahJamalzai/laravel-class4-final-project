@@ -61,7 +61,7 @@
                         
                         {{-- Route --}}
                         {{-- RouteKey --}}
-                        {{-- <x-delete-btn-component route="tag.destroy" routeName="tag" :routeKey="$item['id']" /> --}}
+                        <x-delete-btn-component route="tag.destroy" routeName="tag" :routeKey="$item['id']" />
 
                       </td>
                     </tr>

@@ -18,10 +18,10 @@ class DeleteBtnComponent extends Component
 
     public function __construct($route, $routeKey, $routeName)
     {
-        dd($route);
-        $this->$route = $route;
-        $this->$routeKey = $routeKey;
-        $this->$routeName = $routeName;
+        // dd($route);
+        $this->route = $route;
+        $this->routeKey = $routeKey;
+        $this->routeName = $routeName;
     }
 
     /**

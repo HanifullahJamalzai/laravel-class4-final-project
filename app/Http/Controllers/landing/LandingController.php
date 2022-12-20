@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\landing;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Setting;
+use App\Models\Post;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -12,27 +11,25 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $setting = Setting::first();
         $sliders = Slider::all();
-        $categories = Category::all();
-
-        return view('landing.index', compact('setting', 'sliders', 'categories'));
+        $catFirst = Post::orderBy('created_at', 'desc')->where('category_id', 1)->limit(7)->get();
+        // dd($catFirst);
+        $catSecond = Post::orderBy('created_at', 'desc')->where('category_id', 2)->limit(7)->get();
+        // n^2+1
+        return view('landing.index', compact('sliders', 'catFirst'));
     }
 
     public function contact()
     {
-        $categories = Category::all();
-        $setting = Setting::first();
 
-        return view('landing.contact', compact('categories', 'setting'));
+        return view('landing.contact');
     }
 
     public function about()
     {   
-        $categories = Category::all();
-        $setting = Setting::first();
+ 
 
-        return view('landing.contact', compact('categories', 'setting'));
+        return view('landing.contact');
     }
 
     public function post()

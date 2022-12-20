@@ -50,9 +50,12 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 
+Route::group(['middleware' => 'landingCommonMiddleware'], function () {
+    Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
+    Route::get('/about', [App\Http\Controllers\landing\LandingController::class, 'about'])->name('about');
+    Route::get('/contact', [App\Http\Controllers\landing\LandingController::class, 'contact'])->name('contact');
+    Route::get('/post', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
+    Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');
+});
+
 // Landing Page Related Routes
-Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
-Route::get('/about', [App\Http\Controllers\landing\LandingController::class, 'about'])->name('about');
-Route::get('/contact', [App\Http\Controllers\landing\LandingController::class, 'contact'])->name('contact');
-Route::get('/post', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
-Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');

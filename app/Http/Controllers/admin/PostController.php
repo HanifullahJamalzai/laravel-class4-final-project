@@ -49,6 +49,7 @@ class PostController extends Controller
         $post['title'] = $request->title;
         $post['description'] = $request->description;
         $post['category_id'] = $request->category;
+        // $post['user_id'] = auth()->user()->id;
 
         // dd($request->tag);
         if($request->photo)

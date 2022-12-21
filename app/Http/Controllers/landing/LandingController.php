@@ -12,10 +12,11 @@ class LandingController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        $catFirst = Post::orderBy('created_at', 'desc')->where('category_id', 1)->limit(7)->get();
+        $catFirst = Post::orderBy('created_at', 'desc')->where('category_id', 1)->with('category')->limit(7)->get();
         // dd($catFirst);
-        $catSecond = Post::orderBy('created_at', 'desc')->where('category_id', 2)->limit(7)->get();
+        $catSecond = Post::orderBy('created_at', 'desc')->where('category_id', 2)->with('category')->limit(7)->get();
         // n^2+1
+        
         return view('landing.index', compact('sliders', 'catFirst'));
     }
 

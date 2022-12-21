@@ -46,7 +46,7 @@
         <div class="col-lg-4">
           <div class="post-entry-1 lg">
             <a href="single-post.html"><img src="{{ $catFirst[0]->photo }}" alt="" class="img-fluid"></a>
-            <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{ $catFirst[0]->created_at->diffForHumans() }}</span></div>
+            <div class="post-meta"><span class="date">{{ $catFirst[0]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $catFirst[0]->created_at->diffForHumans() }}</span></div>
             <h2><a href="single-post.html">{{ $catFirst[0]->title }}</a></h2>
             <p class="mb-4 d-block">{!! Str::limit($catFirst[0]->description, 100, '...')  !!}</p>
 
@@ -66,7 +66,7 @@
             <div class="col-lg-4 border-start custom-border">
               <div class="post-entry-1">
                 <a href="single-post.html"><img src="{{ $catFirst[1]->photo }}" alt="" class="img-fluid"></a>
-                <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>{{ $catFirst[1]->created_at->diffForHumans() }}</span></div>
+                <div class="post-meta"><span class="date">{{ $catFirst[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $catFirst[1]->created_at->diffForHumans() }}</span></div>
                 <h2><a href="single-post.html">{{ $catFirst[1]->title }}</a></h2>
               </div>
               <div class="post-entry-1">
@@ -83,7 +83,7 @@
             <div class="col-lg-4 border-start custom-border">
               <div class="post-entry-1">
                 <a href="single-post.html"><img src="{{ $catFirst[4]->photo }}" alt="" class="img-fluid"></a>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                <div class="post-meta"><span class="date">{{ $catFirst[4]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                 <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>
               </div>
               <div class="post-entry-1">

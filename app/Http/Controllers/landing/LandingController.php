@@ -28,15 +28,12 @@ class LandingController extends Controller
 
     public function about()
     {   
- 
-
         return view('landing.contact');
     }
-
     public function post($id, $slug = null)
     {
-        dd($id, $slug);
-        return view('landing.post');
+        $post = Post::where('id', $id)->with('category')->get();
+        return view('landing.post', compact('post'));
     }
 
     public function posts()

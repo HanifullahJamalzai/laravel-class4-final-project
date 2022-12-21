@@ -56,6 +56,7 @@ Route::group(['middleware' => 'landingCommonMiddleware'], function () {
     Route::get('/contact', [App\Http\Controllers\landing\LandingController::class, 'contact'])->name('contact');
     Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');
     Route::get('/post/{id}/{slug?}', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
+    Route::get('/posts/{id}/{category?}', [App\Http\Controllers\landing\LandingController::class, 'category'])->name('category.posts');
 });
 
 // Landing Page Related Routes

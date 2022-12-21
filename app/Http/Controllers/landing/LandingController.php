@@ -36,6 +36,13 @@ class LandingController extends Controller
         return view('landing.post', compact('post'));
     }
 
+    public function category($id, $category = null)
+    {
+        $posts = Post::where('category_id', $id)->with('category')->paginate(10);
+        return view('landing.posts', compact('posts'));
+
+    }
+
     public function posts()
     {
         return view('landing.posts');

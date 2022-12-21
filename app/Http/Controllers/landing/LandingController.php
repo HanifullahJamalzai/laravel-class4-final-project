@@ -33,8 +33,9 @@ class LandingController extends Controller
         return view('landing.contact');
     }
 
-    public function post()
+    public function post($id, $slug = null)
     {
+        dd($id, $slug);
         return view('landing.post');
     }
 

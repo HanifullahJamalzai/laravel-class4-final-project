@@ -47,7 +47,9 @@
           <div class="post-entry-1 lg">
             <a href="single-post.html"><img src="{{ $catFirst[0]->photo }}" alt="" class="img-fluid"></a>
             <div class="post-meta"><span class="date">{{ $catFirst[0]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $catFirst[0]->created_at->diffForHumans() }}</span></div>
-            <h2><a href="single-post.html">{{ $catFirst[0]->title }}</a></h2>
+            <h2>
+              <a href="{{ route('post', ['id' => $catFirst[0]->id, 'slug' => Str::slug($catFirst[0]->title, '-')]) }}">{{ $catFirst[0]->title }}</a>
+            </h2>
             <p class="mb-4 d-block">{!! Str::limit($catFirst[0]->description, 100, '...')  !!}</p>
 
             <div class="d-flex align-items-center author">

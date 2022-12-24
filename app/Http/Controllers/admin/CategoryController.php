@@ -8,6 +8,7 @@ use Error;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -18,6 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        Gate::authorize('isAdmin');
         $categories = \App\Models\Category::all();
         // dd($categories);
 

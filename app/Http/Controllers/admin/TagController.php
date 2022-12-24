@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class TagController extends Controller
 {
@@ -15,6 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
+        Gate::authorize('isAdmin');
         $tags = \App\Models\Tag::all();
         // dd($categories);
 

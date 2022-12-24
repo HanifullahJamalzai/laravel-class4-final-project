@@ -33,6 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create');
         return view('admin.category.create')->with('page', 'store');
     }
 

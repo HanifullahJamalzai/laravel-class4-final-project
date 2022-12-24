@@ -10,8 +10,8 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a href="{{ route('landing') }}">Blog</a></li>
-        <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li><a href="{{ route('landing') }}">@lang('navigation.blogs')</a></li>
+        <li class="dropdown"><a href="category.html"><span>@lang('navigation.category')</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             @foreach ($categories as $category)
               <li><a href="{{ route('category.posts', ['id' => $category->id, 'category' => $category->name]) }}">{{ $category->name }}</a></li>
@@ -19,13 +19,17 @@
           </ul>
         </li>
 
-        <li><a href="{{ route('about') }}">About</a></li>
-        <li><a href="{{ route('contact') }}">Contact</a></li>
+        <li><a href="{{ route('about') }}">@lang('navigation.about')</a></li>
+        <li><a href="{{ route('contact') }}">@lang('navigation.contact')</a></li>
       </ul>
     </nav><!-- .navbar -->
 
 
     <div class="position-relative">
+      <a href="{{ route('language', ['language' => 'en']) }}" class="btn @if(app()->getLocale() == "en") btn-success @endif">EN</a>
+      <a href="{{ route('language', ['language' => 'pa']) }}" class="btn @if(app()->getLocale() == "pa") btn-success @endif">PA</a>
+      <a href="{{ route('language', ['language' => 'da']) }}" class="btn @if(app()->getLocale() == "da") btn-success @endif">DA</a>
+
       <a href="{{ $setting->fb_link }}" class="mx-2"><span class="bi-facebook"></span></a>
       <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
       <a href="#" class="mx-2"><span class="bi-instagram"></span></a>

@@ -50,13 +50,20 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 
-Route::group(['middleware' => 'landingCommonMiddleware'], function () {
+Route::group(['middleware' => ['landingCommonMiddleware', 'languageSwitcher']], function () {
     Route::get('/', [App\Http\Controllers\landing\LandingController::class, 'index'])->name('landing');
     Route::get('/about', [App\Http\Controllers\landing\LandingController::class, 'about'])->name('about');
     Route::get('/contact', [App\Http\Controllers\landing\LandingController::class, 'contact'])->name('contact');
     Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');
     Route::get('/post/{id}/{slug?}', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
     Route::get('/posts/{id}/{category?}', [App\Http\Controllers\landing\LandingController::class, 'category'])->name('category.posts');
+    Route::get('/language/{language}', function ($language) {
+            app()->setLocale($language);
+        // return app()->getLocale();
+        session(['language' => $language]);
+        return back();
+    })->name('language');
 });
+
 
 // Landing Page Related Routes

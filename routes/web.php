@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\landing\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,8 @@ Route::group(['middleware' => ['landingCommonMiddleware', 'languageSwitcher']], 
     Route::get('/posts', [App\Http\Controllers\landing\LandingController::class, 'posts'])->name('posts');
     Route::get('/post/{id}/{slug?}', [App\Http\Controllers\landing\LandingController::class, 'post'])->name('post');
     Route::get('/posts/{id}/{category?}', [App\Http\Controllers\landing\LandingController::class, 'category'])->name('category.posts');
+    Route::resource('comment', CommentController::class);
+   
     Route::get('/language/{language}', function ($language) {
             app()->setLocale($language);
         // return app()->getLocale();

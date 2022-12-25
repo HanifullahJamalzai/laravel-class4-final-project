@@ -17,6 +17,7 @@ class TagController extends Controller
     public function index()
     {
         Gate::authorize('isAdmin');
+        
         $tags = \App\Models\Tag::all();
         // dd($categories);
 

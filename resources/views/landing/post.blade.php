@@ -36,6 +36,21 @@
                   <div class="comment-body">
                     {{ $comment->description }}
                   </div>
+                  
+
+                  @can('commentOwner', $comment)
+                  <div class="d-flex" >
+                    
+                    <form action="{{ route('comment.destroy', ['comment' => $comment]) }}" method="post">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+
+                    <a href="{{ route('comment.edit', ['comment' => $comment->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                  </div>
+                  @endcan
+                  <hr>
                 @endforeach
 
                 {{-- <div class="comment-replies bg-light p-3 mt-3 rounded">
@@ -85,27 +100,34 @@
             <div class="col-lg-12">
               <h5 class="comment-title">Leave a Comment</h5>
               <div class="row">
+               
+                <form action="
+                  @if(isset($isComment))
+                    {{ route('comment.update', ['comment' => $isComment->id]) }} 
+                  @else 
+                    {{ route('comment.store') }} 
+                  @endif"
+                  method="POST">
 
-
-                <form action="{{ route('comment.store') }}" method="POST">
                   @csrf
+                  @if(isset($isComment))
+                    @method('put')
+                  @else
+                    @method('post')
+                  @endif
                   <input type="hidden" name="post_id" value="{{ $post[0]->id }}">
-                {{-- <div class="col-lg-6 mb-3">
-                  <label for="comment-name">Name</label>
-                  <input type="text" class="form-control" id="comment-name" placeholder="Enter your name">
-                </div>
-                <div class="col-lg-6 mb-3">
-                  <label for="comment-email">Email</label>
-                  <input type="text" class="form-control" id="comment-email" placeholder="Enter your email">
-                </div> --}}
+                  
+                  <div class="col-12 mb-3">
+                    <label for="comment-message">Message</label>
 
-                <div class="col-12 mb-3">
-                  <label for="comment-message">Message</label>
-
-                  <textarea class="form-control" name="description" id="comment-message" placeholder="Enter your name" cols="30" rows="10"></textarea>
-                </div>
-                <div class="col-12">
-                  <input type="submit" class="btn btn-primary" value="Post comment">
+                    <textarea class="form-control" name="description" id="comment-message" placeholder="Enter your name" cols="30" rows="10">@if(isset($isComment)){{$isComment->description}}@endif</textarea>
+                  </div>
+                  <div class="col-12">
+                    @if (isset($isComment))
+                      <input type="submit" class="btn btn-success" value="Comment Update">
+                    @else
+                      <input type="submit" class="btn btn-primary" value="Add Comment">
+                    @endif
                 </div>
                 
               </form>

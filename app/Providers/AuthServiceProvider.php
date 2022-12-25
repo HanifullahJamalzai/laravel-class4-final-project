@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 use App\Policies\CategoryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -33,6 +34,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('isAdmin', function (User $user) {
             return $user->role == 1;
+        });
+
+        Gate::define('commentOwner', function (User $user, Comment $comment) {
+            return $user->id == $comment->user_id;
         });
     }
 }

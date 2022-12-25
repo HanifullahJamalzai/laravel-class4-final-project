@@ -4,6 +4,7 @@ namespace App\Http\Controllers\landing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -63,9 +64,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        //
+        return view('landing.post')
+                ->with('post', Post::where('id', $comment->post_id)->with('category')->get())
+                ->with('isComment', $comment);
     }
 
     /**
@@ -75,9 +78,13 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+
+        $comment->update([
+            'description' => $request->description
+        ]);
+        return redirect()->route('post', ['id' => $comment->post_id, 'slug' => str()->slug($comment->post->title, '-')]);
     }
 
     /**
@@ -86,8 +93,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+
+        $comment->delete();
+
+        return back();
     }
 }

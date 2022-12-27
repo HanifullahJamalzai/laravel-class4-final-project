@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserVerifyEmail;
 use App\Models\User;
+use App\Models\VerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -27,8 +30,16 @@ class RegisterController extends Controller
             'email' => $request->email,
             // 'password' => bcrypt($request->password),
             'password' => Hash::make($request->password),
-            'role'     => 3,
+            'role'     => 2,
         ]);
+
+        $verify = VerifyEmail::create([
+            'user_id' => $user->id,
+            'token' => str()->random(20),
+        ]);
+
+        Mail::to($user->email)->send(new UserVerifyEmail($verify->token));
+
 
         // return 'User Registered';
 

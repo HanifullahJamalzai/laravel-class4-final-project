@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class);
     }
+    public function verify()
+    {
+        return $this->hasOne(VerifyEmail::class);
+    }
 }

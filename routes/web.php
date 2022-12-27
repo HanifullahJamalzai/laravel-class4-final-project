@@ -9,6 +9,8 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\landing\CommentController;
+use App\Http\Controllers\auth\VerifyEmailController;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.form');
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('/verifyEmail/{token}', [VerifyEmailController::class, 'verify'])->name('verify');
 
 
 // Route::get('/admin', [DashboardController::class, 'index'])->name('admin')->middleware('auth');
